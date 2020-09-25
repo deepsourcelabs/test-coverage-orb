@@ -41,3 +41,22 @@ commands:
             ./bin/deepsource report --analyzer test-coverage \
             --key << parameters.key >> \
             --value-file << parameters.coverage-file >>
+
+examples:
+  simple_greeting:
+    description: Example usage of DeepSource test-coverage orb
+    usage:
+      version: 2.1
+      orbs:
+        python: circleci/python@0.2.1
+        deepsource: deepsource/test-coverage
+      jobs:
+        run-test:
+          executor: python/default
+          steps:
+            - pip install pytest-cov
+            - pytest --cov=./ --cov-report=xml
+            - deepsource/report:
+                key: python
+                coverage-file: ./coverage.xml
+                dsn: ${DEEPSOURCE_DSN}
