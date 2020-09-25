@@ -20,7 +20,5 @@ workflows:
       - orb-tools/publish-dev:
           orb-name: deepsource/test-coverage
           requires: [orb-tools/pack]
-
-  orb-tests:
-    jobs:
-      - integration-test-for-test-coverage
+      - integration-test-for-test-coverage:
+          requires: [orb-tools/publish-dev]
