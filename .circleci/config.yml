@@ -1,12 +1,26 @@
-version: 2.1
-description:
-
-commands:
-  hello:
-    description: Greet the user politely
-    parameters:
-      username:
-        type: string
-        description: A name of the user to greet
+version: '2.1'
+orbs:
+  orb-tools: circleci/orb-tools@9
+  deepsource: deepsource/test-coverage@dev:alpha
+jobs:
+  integration-test-for-test-coverage:
+    executor: orb-tools/ubuntu
     steps:
-      - run: curl https://deepsource.io/cli | sh
+      - deepsource/report:
+          key: python
+          coverage-file: ./src/tests/coverage.xml
+
+
+workflows:
+  lint-validate-publish-dev:
+    jobs:
+      - orb-tools/lint
+      - orb-tools/pack:
+          requires: [orb-tools/lint]
+      - orb-tools/publish-dev:
+          orb-name: deepsource/test-coverage
+          requires: [orb-tools/pack]
+
+  orb-tests:
+    jobs:
+      - integration-test-for-test-coverage
