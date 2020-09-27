@@ -2,14 +2,17 @@ version: '2.1'
 orbs:
   orb-tools: circleci/orb-tools@9
   deepsource: deepsource/test-coverage@dev:alpha
+  python: circleci/python@0.2.1
 jobs:
   integration-test-for-test-coverage:
-    executor: orb-tools/ubuntu
+    executor: python/default
     steps:
+      - checkout
+      - run: pip install pytest-cov
+      - run: pytest --cov=./ --cov-report=xml
       - deepsource/report:
           key: python
-          coverage-file: ./src/tests/coverage.xml
-
+          coverage-file: ./coverage.xml
 
 workflows:
   lint-validate-publish-dev:
