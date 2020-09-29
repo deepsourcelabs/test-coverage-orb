@@ -1,6 +1,6 @@
 version: '2.1'
 orbs:
-  orb-tools: circleci/orb-tools@9
+  orb-tools: circleci/orb-tools@10
   deepsource: deepsource/test-coverage@dev:alpha
   python: circleci/python@0.2.1
 jobs:
@@ -22,6 +22,8 @@ workflows:
           requires: [orb-tools/lint]
       - orb-tools/publish-dev:
           orb-name: deepsource/test-coverage
+          publish-sha-version: false
+          validate: true
           requires: [orb-tools/pack]
       - integration-test-for-test-coverage:
           requires: [orb-tools/publish-dev]

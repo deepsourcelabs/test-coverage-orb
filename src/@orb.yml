@@ -1,0 +1,7 @@
+version: 2.1
+description: >
+  CircleCi orb that uploads test coverage reports to DeepSource for Test Coverage analysis.
+
+display:
+  source_url: https://github.com/deepsourcelabs/test-coverage-orb
+  home_url: https://deepsource.io/
