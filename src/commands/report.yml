@@ -1,0 +1,36 @@
+description: >
+  Report the test coverage file generated after running the tests to DeepSource.
+parameters:
+  key:
+    description: >
+      Programming language shortcode for which coverage is reported.
+      Supported languages are — go, javascript, python, ruby
+    type: string
+    default: ""
+
+  coverage-file:
+    description: Path to the coverage data file. e.g. ./coverage.xml
+    type: string
+    default: ""
+
+  dsn:
+    description: >
+        DeepSource DSN of this repository.
+        It is available under Settings → Reporting tab of the repository page on DeepSource.
+    type: string
+    default: ${DEEPSOURCE_DSN}
+
+steps:
+  - run:
+      name: Report coverage file to DeepSource
+      command: |
+        # Install DeepSource CLI
+        curl https://deepsource.io/cli | sh
+
+        # Set the DSN
+        DEEPSOURCE_DSN=<< parameters.dsn >>
+
+        # Report coverage artifact to the 'test-coverage' analyzer
+        ./bin/deepsource report --analyzer test-coverage \
+        --key << parameters.key >> \
+        --value-file << parameters.coverage-file >>

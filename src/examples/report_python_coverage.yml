@@ -1,0 +1,20 @@
+description: Example usage of DeepSource test-coverage orb
+usage:
+  version: 2.1
+
+  orbs:
+    deepsource: deepsource/test-coverage
+
+  jobs:
+    run-test:
+      docker:
+        - image: cimg/python:3.8.5
+      steps:
+        - checkout
+        # Run your tests to generate coverage report
+        - run: pytest --cov --cov-report=xml
+        # Send the generated coverage-result to DeepSource
+        - deepsource/report:
+            key: python
+            coverage-file: ./coverage.xml
+            dsn: ${DEEPSOURCE_DSN}
