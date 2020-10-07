@@ -15,7 +15,7 @@ jobs:
           coverage-file: ./coverage.xml
 
 workflows:
-  lint-validate-publish-dev:
+  lint-validate-test-publish:
     jobs:
       - orb-tools/lint
       - orb-tools/pack:
@@ -27,3 +27,12 @@ workflows:
           requires: [orb-tools/pack]
       - integration-test-for-test-coverage:
           requires: [orb-tools/publish-dev]
+      - orb-tools/dev-promote-prod-from-commit-subject:
+          orb-name: deepsource/test-coverage
+          fail-if-semver-not-indicated: true
+          publish-version-tag: false
+          add-pr-comment: false
+          requires: [integration-test-for-test-coverage]
+          filters:
+            branches:
+              only: master
