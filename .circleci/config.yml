@@ -32,6 +32,7 @@ workflows:
           fail-if-semver-not-indicated: true
           publish-version-tag: false
           add-pr-comment: false
+          orb-ref: "dev:alpla"
           requires: [integration-test-for-test-coverage]
           filters:
             branches:
