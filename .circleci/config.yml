@@ -22,7 +22,6 @@ workflows:
           requires: [orb-tools/lint]
       - orb-tools/publish-dev:
           orb-name: deepsource/test-coverage
-          publish-sha-version: false
           validate: true
           requires: [orb-tools/pack]
       - integration-test-for-test-coverage:
@@ -32,7 +31,6 @@ workflows:
           fail-if-semver-not-indicated: true
           publish-version-tag: false
           add-pr-comment: false
-          orb-ref: "dev:alpla"
           requires: [integration-test-for-test-coverage]
           filters:
             branches:
