@@ -1,25 +1,25 @@
 <p align="center">
-  <img src="https://deepsource.io/images/logo-wordmark-dark.svg" />
+  <img src="https://cms.deepsource.io/logo-wordmark-dark.svg" />
 </p>
 
 <p align="center">
-  <a href="https://deepsource.io/docs">Documentation</a> |
-  <a href="https://deepsource.io/signup">Get Started</a> |
-  <a href="https://discuss.deepsource.io/">Discuss</a>
+  <a href="https://docs.deepsource.com">Docs</a> |
+  <a href="https://deepsource.com">Get Started</a> |
+  <a href="https://discuss.deepsource.com/">Discuss</a>
 </p>
 
 <p align="center">
-  DeepSource helps you ship good quality code.
+  The Code Health Platform
 </p>
 
 </p>
 
 ---
 
-### DeepSource test coverage Circle CI Orb
+### DeepSource Test Coverage Circle CI Orb
 
-Upload test coverage reports to DeepSource to track test coverage and see which lines are not covered by tests yet.
+Upload test coverage reports to DeepSource to track test coverage.
 
-Visit http://deepsource.io for more details.
+Refer to [the docs](https://docs.deepsource.com/docs/analyzers-test-coverage#setup-test-coverage) for more info.
 
 #### Latest Version: 1.1.0
